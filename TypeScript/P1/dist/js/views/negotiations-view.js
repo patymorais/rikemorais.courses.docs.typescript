@@ -1,5 +1,7 @@
 export class NegotiationsView {
-    template(): string {
+    constructor(selector) {
+    }
+    template() {
         return `
             <table class="table table-hover table-bordered">
                 <thead>
