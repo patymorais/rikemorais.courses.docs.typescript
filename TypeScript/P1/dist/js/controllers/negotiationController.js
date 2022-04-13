@@ -1,10 +1,12 @@
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
+import { MessageView } from "../views/messageView.js";
 import { NegotiationsView } from "../views/negotiationsView.js";
 export class NegotiationController {
     constructor() {
         this.negotiations = new Negotiations();
         this.negotiationsView = new NegotiationsView('#negotiationsView');
+        this.messageView = new MessageView('#messageView');
         this.inputDate = document.querySelector('#date');
         this.inputQuantity = document.querySelector('#quantity');
         this.inputValue = document.querySelector('#value');
@@ -14,6 +16,7 @@ export class NegotiationController {
         const negotiation = this.newNegotiation();
         this.negotiations.add(negotiation);
         this.negotiationsView.update(this.negotiations);
+        this.messageView.update('Trading successfully added!');
         this.clearForm();
     }
     newNegotiation() {
