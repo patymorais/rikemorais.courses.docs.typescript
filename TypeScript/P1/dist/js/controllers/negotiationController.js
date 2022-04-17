@@ -1,4 +1,4 @@
-import { weekDay } from "../enums/weekDay.js";
+import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
 import { MessageView } from "../views/messageView.js";
@@ -24,8 +24,8 @@ export class NegotiationController {
         this.updateView();
     }
     isWorkDay(date) {
-        return date.getDay() > weekDay.SUNDAY
-            && date.getDay() < weekDay.SATURDAY;
+        return date.getDay() > WeekDay.SUNDAY
+            && date.getDay() < WeekDay.SATURDAY;
     }
     newNegotiation() {
         const exp = /-/g;
