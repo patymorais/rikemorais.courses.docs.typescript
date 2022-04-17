@@ -14,7 +14,7 @@ export class NegotiationController {
         this.negotiationsView.update(this.negotiations);
     }
     add() {
-        const negotiation = this.newNegotiation();
+        const negotiation = Negotiation.createFrom(this.inputDate.value, this.inputQuantity.value, this.inputValue.value);
         if (!this.isWorkDay(negotiation.date)) {
             this.messageView.update('Trading not added! It is not a work day!');
             return;
@@ -26,13 +26,6 @@ export class NegotiationController {
     isWorkDay(date) {
         return date.getDay() > WeekDay.SUNDAY
             && date.getDay() < WeekDay.SATURDAY;
-    }
-    newNegotiation() {
-        const exp = /-/g;
-        const date = new Date(this.inputDate.value.replace(exp, ','));
-        const quantity = parseInt(this.inputQuantity.value);
-        const value = parseFloat(this.inputValue.value);
-        return new Negotiation(date, quantity, value);
     }
     clearForm() {
         this.inputDate.value = '';
