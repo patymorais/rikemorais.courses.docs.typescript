@@ -1,5 +1,5 @@
-import { Negotiations } from "../models/negotiations";
-import { View } from "./view";
+import { Negotiations } from "../models/negotiations.js";
+import { View } from "./view.js";
 
 export class NegotiationsView extends View<Negotiations>{
 

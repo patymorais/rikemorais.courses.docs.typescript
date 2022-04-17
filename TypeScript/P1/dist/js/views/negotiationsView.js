@@ -1,4 +1,4 @@
-import { View } from "./view";
+import { View } from "./view.js";
 export class NegotiationsView extends View {
     template(model) {
         return `
