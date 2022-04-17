@@ -1,3 +1,4 @@
+import { weekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
 import { MessageView } from "../views/messageView.js";
@@ -20,13 +21,19 @@ export class NegotiationController {
 
     public add(): void {
         const negotiation = this.newNegotiation();
-        if (negotiation.date.getDay() > 0 && negotiation.date.getDay() < 6) {
-            this.negotiations.add(negotiation);
-            this.clearForm();
-            this.updateView();
-        } else {
-            this.messageView.update('Trading not added! Trading must be done on weekdays!');
+        if (!this.isWorkDay(negotiation.date)) {
+            this.messageView.update('Trading not added! It is not a work day!');
+            return;
         }
+
+        this.negotiations.add(negotiation);
+        this.clearForm();
+        this.updateView();
+    }
+    
+    private isWorkDay(date: Date) {
+        return date.getDay() > weekDay.SUNDAY 
+            && date.getDay() < weekDay.SATURDAY;
     }
 
     public newNegotiation(): Negotiation {
