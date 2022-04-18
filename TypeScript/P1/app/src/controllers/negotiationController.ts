@@ -20,6 +20,7 @@ export class NegotiationController {
     }
 
     public add(): void {
+        const t1 = performance.now();
         const negotiation = Negotiation.createFrom(
             this.inputDate.value,
             this.inputQuantity.value,
@@ -33,6 +34,8 @@ export class NegotiationController {
         this.negotiations.add(negotiation);
         this.clearForm();
         this.updateView();
+        const t2 = performance.now();
+        console.log(`Performance: ${t2 - t1}ms`);
     }
     
     private isWorkDay(date: Date) {

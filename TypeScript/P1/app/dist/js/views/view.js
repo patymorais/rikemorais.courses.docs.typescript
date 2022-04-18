@@ -13,10 +13,13 @@ export class View {
         }
     }
     update(model) {
+        const t1 = performance.now();
         let template = this.template(model);
         if (this.escape) {
             template = template.replace(/<script>[\s\S]*?<\/script>/, '');
         }
         this.element.innerHTML = template;
+        const t2 = performance.now();
+        console.log(`Template rendering time: ${t2 - t1} ms`);
     }
 }
