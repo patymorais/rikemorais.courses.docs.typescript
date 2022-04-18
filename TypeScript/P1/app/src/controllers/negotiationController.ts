@@ -19,6 +19,8 @@ export class NegotiationController {
         this.inputValue = document.querySelector('#value') as HTMLInputElement;
         this.negotiationsView.update(this.negotiations);
     }
+
+    @timeLog()
     public add(): void {
         const negotiation = Negotiation.createFrom(
             this.inputDate.value,
