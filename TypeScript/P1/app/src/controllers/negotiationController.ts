@@ -10,8 +10,8 @@ export class NegotiationController {
     private inputQuantity: HTMLInputElement;
     private inputValue: HTMLInputElement;
     private negotiations = new Negotiations();
-    private negotiationsView = new NegotiationsView('#negotiationsView', true);
-    private messageView = new MessageView('#messageView', false);
+    private negotiationsView = new NegotiationsView('#negotiationsView');
+    private messageView = new MessageView('#messageView');
 
     constructor() {
         this.inputDate = document.querySelector('#date') as HTMLInputElement;
