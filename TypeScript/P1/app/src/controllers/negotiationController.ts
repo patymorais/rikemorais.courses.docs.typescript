@@ -1,3 +1,4 @@
+import { domInjector } from "../decorators/domInjector.js";
 import { inspect } from "../decorators/inspect.js";
 import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
@@ -7,8 +8,11 @@ import { MessageView } from "../views/messageView.js";
 import { NegotiationsView } from "../views/negotiationsView.js";
 
 export class NegotiationController {
+    @domInjector('#data')
     private inputDate: HTMLInputElement;
+    @domInjector('#quantity')
     private inputQuantity: HTMLInputElement;
+    @domInjector('#value')
     private inputValue: HTMLInputElement;
     private negotiations = new Negotiations();
     private negotiationsView = new NegotiationsView('#negotiationsView');
