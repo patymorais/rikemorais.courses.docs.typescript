@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { inspect } from "../decorators/inspect.js";
 import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
@@ -46,5 +47,6 @@ export class NegotiationController {
     }
 }
 __decorate([
+    inspect(),
     timeLog()
 ], NegotiationController.prototype, "add", null);

@@ -1,3 +1,4 @@
+import { inspect } from "../decorators/inspect.js";
 import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
@@ -20,6 +21,7 @@ export class NegotiationController {
         this.negotiationsView.update(this.negotiations);
     }
 
+    @inspect()
     @timeLog()
     public add(): void {
         const negotiation = Negotiation.createFrom(
