@@ -39,6 +39,10 @@ export class NegotiationController {
         this.clearForm();
         this.updateView();
     }
+
+    importData(): void {
+        alert('Importing data...');
+    }
     
     private isWorkDay(date: Date) {
         return date.getDay() > WeekDay.SUNDAY 

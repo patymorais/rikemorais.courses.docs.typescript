@@ -10,3 +10,12 @@ if (form) {
 } else {
     throw Error('Form not found!');
 }
+
+const importButton = document.querySelector('#import-button');
+if (importButton) {
+    importButton.addEventListener('click', () => {
+        controller.importData();
+    });
+} else {
+    throw Error('Import button not found!');
+}
