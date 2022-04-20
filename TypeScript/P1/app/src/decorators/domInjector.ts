@@ -1,7 +1,13 @@
 export function domInjector(selector: string) {
+
     return function(target: any, propertyKey: string) {
+        console.log(`Modifying ${target.constructor.name} and adding ${propertyKey}`);
+        let element: HTMLElement;
         const getter = function() {
-            const element = document.querySelector(selector);
+            if (!element) {
+                element = <HTMLElement>document.querySelector(selector);
+                console.log(`Getting ${selector} from DOM and storing in ${propertyKey}`);
+            }
             return element;
         }
 
