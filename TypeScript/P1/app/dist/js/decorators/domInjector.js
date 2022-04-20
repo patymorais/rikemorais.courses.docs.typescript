@@ -4,5 +4,6 @@ export function domInjector(selector) {
             const element = document.querySelector(selector);
             return element;
         };
+        Object.defineProperty(target, propertyKey, { get: getter });
     };
 }
