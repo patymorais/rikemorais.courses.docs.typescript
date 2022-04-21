@@ -4,8 +4,8 @@ import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
+import { NegotiationService } from "../services/negotiationService.js";
 import { MessageView } from "../views/messageView.js";
-
 import { NegotiationsView } from "../views/negotiationsView.js";
 
 export class NegotiationController {
@@ -18,6 +18,7 @@ export class NegotiationController {
     private negotiations = new Negotiations();
     private negotiationsView = new NegotiationsView('#negotiationsView');
     private messageView = new MessageView('#messageView');
+    private negotiationService = new NegotiationService();
 
     constructor() {
         this.negotiationsView.update(this.negotiations);
@@ -42,17 +43,8 @@ export class NegotiationController {
     }
 
     importData(): void {
-        fetch('http://localhost:8080/data')
-            .then(res => res.json())
-            .then((data: NegotiationsDay[]) => {
-                return data.map(dataToday => {
-                    return new Negotiation(
-                        new Date(), 
-                        dataToday.vezes, 
-                        dataToday.montante
-                    )
-                })
-            })
+        this.negotiationService
+            .getNegotiationsDay()
             .then(negotiationsToday => {
                 for(let negotiation of negotiationsToday) {
                     this.negotiations.add(negotiation);
