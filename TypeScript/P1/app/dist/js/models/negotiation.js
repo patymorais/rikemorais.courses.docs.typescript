@@ -4,6 +4,13 @@ export class Negotiation {
         this.quantity = quantity;
         this.value = value;
     }
+    static createFrom(dateString, quantityString, valueString) {
+        const exp = /-/g;
+        const date = new Date(dateString.replace(exp, ','));
+        const quantity = parseInt(quantityString);
+        const value = parseFloat(valueString);
+        return new Negotiation(date, quantity, value);
+    }
     get volume() {
         return this.quantity * this.value;
     }
@@ -11,11 +18,11 @@ export class Negotiation {
         const date = new Date(this._date.getTime());
         return date;
     }
-    static createFrom(dateString, quantityString, valueString) {
-        const exp = /-/g;
-        const date = new Date(dateString.replace(exp, ','));
-        const quantity = parseInt(quantityString);
-        const value = parseFloat(valueString);
-        return new Negotiation(date, quantity, value);
+    toText() {
+        return `
+            Date: ${this.date},
+            Quantity: ${this.quantity},
+            Value: ${this.value}
+        `;
     }
 }

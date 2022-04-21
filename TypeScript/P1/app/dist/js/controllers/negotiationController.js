@@ -28,6 +28,8 @@ export class NegotiationController {
             return;
         }
         this.negotiations.add(negotiation);
+        console.log(negotiation.toText());
+        console.log(this.negotiations.toText());
         this.clearForm();
         this.updateView();
     }
