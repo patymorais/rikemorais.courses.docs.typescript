@@ -4,6 +4,6 @@ var api = require('../api');
 
 module.exports  = function(app) {
         
-    app.route('/dados')
+    app.route('/data')
         .get(api.dados);          
 };
