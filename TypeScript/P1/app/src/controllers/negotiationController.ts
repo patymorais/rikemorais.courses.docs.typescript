@@ -5,6 +5,7 @@ import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
 import { MessageView } from "../views/messageView.js";
+
 import { NegotiationsView } from "../views/negotiationsView.js";
 
 export class NegotiationController {
@@ -43,7 +44,7 @@ export class NegotiationController {
     importData(): void {
         fetch('http://localhost:8080/data')
             .then(res => res.json())
-            .then((data: any[]) => {
+            .then((data: NegotiationsDay[]) => {
                 return data.map(dataToday => {
                     return new Negotiation(
                         new Date(), 
