@@ -11,6 +11,7 @@ import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
 import { NegotiationService } from "../services/negotiationService.js";
+import { printing } from "../utils/printing.js";
 import { MessageView } from "../views/messageView.js";
 import { NegotiationsView } from "../views/negotiationsView.js";
 export class NegotiationController {
@@ -28,8 +29,7 @@ export class NegotiationController {
             return;
         }
         this.negotiations.add(negotiation);
-        console.log(negotiation.toText());
-        console.log(this.negotiations.toText());
+        printing(negotiation, this.negotiations);
         this.clearForm();
         this.updateView();
     }
