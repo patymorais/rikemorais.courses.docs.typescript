@@ -10,3 +10,4 @@ export class NegotiationsService {
         });
     }
 }
+//# sourceMappingURL=negotiationsService.js.map

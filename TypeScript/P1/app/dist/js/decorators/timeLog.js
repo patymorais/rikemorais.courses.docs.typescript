@@ -17,3 +17,4 @@ export function timeLog(inSeconds = false) {
         return descriptor;
     };
 }
+//# sourceMappingURL=timeLog.js.map
