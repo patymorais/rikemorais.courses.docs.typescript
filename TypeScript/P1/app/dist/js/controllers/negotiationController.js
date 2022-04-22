@@ -10,7 +10,7 @@ import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
-import { NegotiationService } from "../services/negotiationService.js";
+import { NegotiationsService } from "../services/negotiationsService.js";
 import { printing } from "../utils/printing.js";
 import { MessageView } from "../views/messageView.js";
 import { NegotiationsView } from "../views/negotiationsView.js";
@@ -19,7 +19,7 @@ export class NegotiationController {
         this.negotiations = new Negotiations();
         this.negotiationsView = new NegotiationsView('#negotiationsView');
         this.messageView = new MessageView('#messageView');
-        this.negotiationService = new NegotiationService();
+        this.negotiationsService = new NegotiationsService();
         this.negotiationsView.update(this.negotiations);
     }
     add() {
@@ -34,8 +34,16 @@ export class NegotiationController {
         this.updateView();
     }
     importData() {
-        this.negotiationService
+        this.negotiationsService
             .getNegotiationsDay()
+            .then(negotiationsToday => {
+            return negotiationsToday.filter(negotiationToday => {
+                return !this.negotiations
+                    .list()
+                    .some(negotiation => negotiation
+                    .isEqual(negotiationToday));
+            });
+        })
             .then(negotiationsToday => {
             for (let negotiation of negotiationsToday) {
                 this.negotiations.add(negotiation);
