@@ -1,6 +1,4 @@
 import { domInjector } from "../decorators/domInjector.js";
-import { inspect } from "../decorators/inspect.js";
-import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
@@ -25,16 +23,16 @@ export class NegotiationController {
         this.negotiationsView.update(this.negotiations);
     }
 
-    @inspect()
-    @timeLog()
     public add(): void {
         const negotiation = Negotiation.createFrom(
             this.inputDate.value,
             this.inputQuantity.value,
             this.inputValue.value
         );
+
         if (!this.isWorkDay(negotiation.date)) {
-            this.messageView.update('Trading not added! It is not a work day!');
+            this.messageView
+                .update('Trading not added! It is not a work day!');
             return;
         }
 

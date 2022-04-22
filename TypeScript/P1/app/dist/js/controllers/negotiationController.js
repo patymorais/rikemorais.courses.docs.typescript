@@ -5,8 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { domInjector } from "../decorators/domInjector.js";
-import { inspect } from "../decorators/inspect.js";
-import { timeLog } from "../decorators/timeLog.js";
 import { WeekDay } from "../enums/weekDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
@@ -25,7 +23,8 @@ export class NegotiationController {
     add() {
         const negotiation = Negotiation.createFrom(this.inputDate.value, this.inputQuantity.value, this.inputValue.value);
         if (!this.isWorkDay(negotiation.date)) {
-            this.messageView.update('Trading not added! It is not a work day!');
+            this.messageView
+                .update('Trading not added! It is not a work day!');
             return;
         }
         this.negotiations.add(negotiation);
@@ -75,8 +74,4 @@ __decorate([
 __decorate([
     domInjector('#value')
 ], NegotiationController.prototype, "inputValue", void 0);
-__decorate([
-    inspect(),
-    timeLog()
-], NegotiationController.prototype, "add", null);
 //# sourceMappingURL=negotiationController.js.map
