@@ -1,2 +1,2 @@
 # rikemorais.courses.alura
-Repository of the courses I took at alura.com.br
+[pt-BR] Repositório do Curso de TypeScript que fiz na Alura.
